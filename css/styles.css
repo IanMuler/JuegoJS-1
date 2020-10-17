@@ -44,8 +44,12 @@ main div img{
     border-radius: 50%;
 }
 
+#piedra1, #papel1, #tijera1{
+    cursor: pointer;
+}
+
 .selected{
-    /*border: 5px solid rgb(33, 149, 243);*/
+    border: 5px solid rgb(33, 149, 243);
 }
 
 .vs{
