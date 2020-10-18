@@ -9,10 +9,13 @@ document.getElementById("piedra1")
             var piedra1 = document.getElementById("piedra1");
             piedra1.classList.add("selected");
             selected = 1;
+
         } else if (selected == 1 && playing == false) {
             var piedra1 = document.getElementById("piedra1");
             piedra1.classList.remove("selected");
             selected = 0;
+            reset2();
+        
         }
         selecciona_blanco();
         play_activado();
@@ -30,6 +33,8 @@ document.getElementById("papel1")
             var papel1 = document.getElementById("papel1");
             papel1.classList.remove("selected");
             selected = 0;
+            reset2();
+        
         }
         play_activado();
         selecciona_blanco();
@@ -47,6 +52,8 @@ document.getElementById("tijera1")
             var tijera1 = document.getElementById("tijera1");
             tijera1.classList.remove("selected");
             selected = 0;
+            reset2();
+    
         }
         play_activado();
         selecciona_blanco();
@@ -66,13 +73,13 @@ function selecciona_blanco() {
 /* función para botón jugar más claro al seleccionar una opción */
 
 var playon = false;
+
 function play_activado() {
     if (selected != 0) {
         var play_activado = document.getElementById("play");
         play_activado.classList.add("play_activado");
-
         playon = true;
-        
+
     } else {
         var play_activado = document.getElementById("play");
         play_activado.classList.remove("play_activado");
@@ -114,53 +121,104 @@ function offtijera2() {
 }
 
 
-/* Animación CPU */
+/* Animación CPU al pulsar botón */
 var intervalo = 100;
-function animation(){
+
+function animation() {
 
     onpiedra2();
-    setTimeout(offpiedra2,intervalo);
-    setTimeout(onpapel2,intervalo);
-    setTimeout(offpapel2,intervalo*2);
-    setTimeout(ontijera2,intervalo*2);
-    setTimeout(offtijera2,intervalo*3);
+    setTimeout(offpiedra2, intervalo);
+    setTimeout(onpapel2, intervalo);
+    setTimeout(offpapel2, intervalo * 2);
+    setTimeout(ontijera2, intervalo * 2);
+    setTimeout(offtijera2, intervalo * 3);
 
 }
 
 var valorcpu;
 
-function button_play (){ // Llamada desde html
-    if (playon == true){
-     animation_group();
-     playing = true;
+function reset2() {
+    offpapel2();
+    offpiedra2();
+    offtijera2();
+}
+
+function button_play() { // Llamada desde html
+
+    if (playon == true) {
+        reset2();
+        animation_group();
+        playing = true;
     }
+
+    function animation_group() {
+        animation();
+        setTimeout(animation, intervalo * 3);
+        setTimeout(animation, intervalo * 6);
+        setTimeout(animation, intervalo * 9);
+        setTimeout(animation, intervalo * 12);
+        setTimeout(animation, intervalo * 15);
+        setTimeout(animation, intervalo * 18);
+        setTimeout(random, intervalo * 21);
+    }
+
 
     /*función random sobre las opciones del CPU*/
 
     function random() {
-         valorcpu = Math.round(Math.random()*2);
-    
-    console.log(valorcpu);
-    if (valorcpu == 0){
-        onpiedra2();
-    }
-        else if (valorcpu == 1){
-            ontijera2();
+        valorcpu = Math.round(Math.random() * 2);
+
+        if (valorcpu == 0) {
+            onpiedra2();
+        } else if (valorcpu == 1) {
+            onpiedra2();
+            setTimeout(offpiedra2, intervalo);
+            setTimeout(onpapel2, intervalo);
+        } else {
+            onpiedra2();
+            setTimeout(offpiedra2, intervalo);
+            setTimeout(onpapel2, intervalo);
+            setTimeout(offpapel2, intervalo * 2);
+            setTimeout(ontijera2, intervalo * 2);
         }
-            else {
-                onpapel2();
-            }   
+
+        setTimeout(playing = false, intervalo * 5);
+        setTimeout(resultado, intervalo * 5);
+    }
 }
 
-function animation_group(){
-animation();
-setTimeout(animation,intervalo*3);
-setTimeout(animation,intervalo*6);
-setTimeout(animation,intervalo*9);
-setTimeout(animation,intervalo*12);
-setTimeout(animation,intervalo*15);
-setTimeout(animation,intervalo*18);
-setTimeout(random, intervalo*21);
-}
+/* Lógica de victoria y derrota */
 
-}
+function resultado() {
+    console.log(selected);
+    console.log(valorcpu);
+    if (selected - 1 != valorcpu) {
+        if (
+            (selected === 1 && valorcpu === 2) ||
+            (selected === 2 && valorcpu === 0) ||
+            (selected === 3 && valorcpu === 1)) {
+
+            var box = document.getElementById("resultado");
+            var p = document.createElement("p");
+            p.innerHTML = "Has ganado";
+            box.appendChild(p);
+            p.classList.add("winner");
+            }
+        }
+            if (selected -1 == valorcpu) {
+
+            var box = document.getElementById("resultado");
+            var p = document.createElement("p");
+            p.innerHTML = "Has empatado";
+            box.appendChild(p);
+            p.classList.add("draw");
+        } else {
+
+            var box = document.getElementById("resultado");
+            var p = document.createElement("p");
+            p.innerHTML = "Has perdido";
+            box.appendChild(p);
+            p.classList.add("loser");
+        }
+
+    }

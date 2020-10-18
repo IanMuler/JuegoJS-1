@@ -72,6 +72,12 @@ main div img{
     color: rgb(33, 149, 243);
 }
 
+.draw {
+    margin-top: 20px;
+    font-size: 3rem;
+    color: rgb(172, 134, 84);
+}
+
 #play {
     font-family: inherit;
     width: 70px;
