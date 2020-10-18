@@ -35,6 +35,11 @@ h3{
     font-size: 2.5rem;
 }
 
+.selecciona_uno_blanco{
+    color: white;
+}
+
+
 main div{
     margin: 20px 0;
 }
@@ -44,9 +49,7 @@ main div img{
     border-radius: 50%;
 }
 
-#piedra1, #papel1, #tijera1{
-    cursor: pointer;
-}
+
 
 .selected{
     border: 5px solid rgb(33, 149, 243);
@@ -67,4 +70,31 @@ main div img{
     margin-top: 20px;
     font-size: 3rem;
     color: rgb(33, 149, 243);
+}
+
+#play {
+    font-family: inherit;
+    width: 70px;
+    font-size: 2rem;
+    border-radius: 50px;
+    margin-top: 15px;
+}
+.play:active{
+    background-color: rgb(255, 52, 52);
+}
+
+.play_activado:active{
+    background-color: rgb(235, 231, 197);
+}
+
+
+
+#play:focus, main div img:focus{
+    outline: none;
+}
+
+@media (min-width:1000px){
+#piedra1, #papel1, #tijera1{
+    cursor: pointer;
+}
 }
