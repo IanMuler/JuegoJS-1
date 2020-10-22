@@ -29,6 +29,7 @@ main {
 .players_names{
     font-size: 3.5rem;
 }
+
 h3{
     margin-top: 12px;
     color: rgba(165, 165, 165, 0.527);
@@ -39,7 +40,6 @@ h3{
     color: white;
 }
 
-
 main div{
     margin: 20px 0;
 }
@@ -48,8 +48,6 @@ main div img{
     height: 90px;
     border-radius: 50%;
 }
-
-
 
 .selected{
     border: 5px solid rgb(33, 149, 243);
@@ -92,8 +90,6 @@ main div img{
 .play_activado:active{
     background-color: rgb(235, 231, 197);
 }
-
-
 
 #play:focus, main div img:focus{
     outline: none;
