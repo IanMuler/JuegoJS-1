@@ -4,6 +4,7 @@ var selected = 0; //opción elegida
 var playing = false; 
 var printed = 0; //<p> de victoria, derrota, empate
 var intervalo = 100; //Intervalo de animación
+var valorcpu;
 
 
 var piedra1 = document.getElementById("piedra1");
@@ -160,10 +161,9 @@ function button_play() { // Llamada desde index
     }
 }
 
-//Opcione random CPU
+//Opciones random CPU
 function random() {
-
-    var valorcpu = Math.round(Math.random() * 2) + 1;
+    valorcpu = Math.round(Math.random() * 2) + 1;
     if (valorcpu == 1) {
         onpiedra2();
     } else if (valorcpu == 2) {
